@@ -107,8 +107,8 @@ namespace Microsoft.Azure.Commands.ResourceManager.Cmdlets.Implementation
 
         private bool ShouldExecuteWhatIf()
         {
-            return this.MyInvocation.BoundParameters.ContainsKey("WhatIf") ||
-                   this.MyInvocation.BoundParameters.ContainsKey("Confirm");
+            return (this.MyInvocation.BoundParameters.ContainsKey("WhatIf") && ((SwitchParameter)this.MyInvocation.BoundParameters["WhatIf"]).IsPresent) ||
+                   (this.MyInvocation.BoundParameters.ContainsKey("Confirm") && ((SwitchParameter)this.MyInvocation.BoundParameters["Confirm"]).IsPresent);
         }
 
         private string ExecuteWhatIf()
